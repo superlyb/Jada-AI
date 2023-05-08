@@ -171,6 +171,7 @@ function SubscriptionModal(SubscriptionModalProps:any) {
   //  useEffect(() => {
       window.location.href = 'https://subscription-test-5xpt.vercel.app/account'//'https://www.jadaitech.com/';
   //  }, []);
+    return null;
   }
   
 };
@@ -192,8 +193,7 @@ export function Settings() {
   const hasNewVersion = currentVersion !== remoteId;
   
 
-  const { isLoading, subscription, user,accessToken} = useUser();
-  console.log("xxx",user)
+  const { isLoadings, subscription, user,accessToken} = useUser();
 /*   function checkUpdate(force = false) {
     setCheckingUpdate(true);
     updateStore.getLatestVersion(force).then(() => {
