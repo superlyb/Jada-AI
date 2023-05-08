@@ -159,7 +159,7 @@ function SubscriptionModal(SubscriptionModalProps:any) {
     <Modal title={Locale.Settings.Subscription.Title}
            onClose={() => SubscriptionModalProps.onClose?.()} >
           <div className={styles["user-prompt-modal"]}>
-            <SignIn onLoad={handleIframeLoad}/>
+            <SignIn/>
           
           </div>
     </Modal> 
