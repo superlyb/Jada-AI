@@ -157,7 +157,7 @@ function SubscriptionModal(SubscriptionModalProps:any) {
      return (
      <div className="modal-mask">
     <Modal title={Locale.Settings.Subscription.Title}
-           onClose={() => props.onClose?.()} >
+           onClose={() => SubscriptionModalProps.onClose?.()} >
           <div className={styles["user-prompt-modal"]}>
             <SignIn onLoad={handleIframeLoad}/>
           
