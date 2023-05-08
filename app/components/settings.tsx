@@ -168,9 +168,9 @@ function SubscriptionModal(SubscriptionModalProps) {
     
   }
   else{
-    useEffect(() => {
+  //  useEffect(() => {
       window.location.href = 'https://subscription-test-5xpt.vercel.app/account'//'https://www.jadaitech.com/';
-    }, []);
+  //  }, []);
   }
   
 };
