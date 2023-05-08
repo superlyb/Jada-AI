@@ -4,18 +4,14 @@ import {useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 
-import type { Database } from '../../types_db';
-import {useState,} from "react";
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { useUser } from '@/utils/useUser';
-import { userDetails, Subscription } from '../../types';
 
 
 //import LoadingDots from '@/components/ui/LoadingDots';
 //import Logo from '@/components/icons/Logo';
 //import { getURL } from '@/utils/helpers';
 const SignIn = (props: { onClose?: () => void }) => {
-    const { isLoading, subscription, userDetails,accessToken} = useUser();
+    const {userDetails} = useUser();
     const supabaseClient = useSupabaseClient();
     //console.log('111supabaseClient,',accessToken);
     //console.log('xxx',subscription)
