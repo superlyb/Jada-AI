@@ -8,7 +8,7 @@ import type { Database } from '../types_db';
 import {useState,} from "react";
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { useUser } from '@/utils/useUser';
-import { userDetails, Subscription } from '../types';
+import { userDetails, Subscription } from '../../types';
 
 
 //import LoadingDots from '@/components/ui/LoadingDots';

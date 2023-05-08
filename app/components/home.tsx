@@ -25,7 +25,7 @@ import { SideBar } from "./sidebar";
 import { useAppConfig } from "../store/config";
 
 import { MyUserContextProvider } from '@/utils/useUser';
-import type { Database } from '../types_db';
+import type { Database } from '../../types_db';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import {useUser, SessionContextProvider } from '@supabase/auth-helpers-react';
 
