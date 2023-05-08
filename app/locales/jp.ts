@@ -6,6 +6,8 @@ const jp: LocaleType = {
   Error: {
     Unauthorized:
       "現在は未承認状態です。左下の設定ボタンをクリックし、アクセスパスワードを入力してください。",
+    UnsignIn:
+      "please sign in for full access，click [setting](/#/settings) button subscription to sign in。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 通のチャット`,
@@ -158,6 +160,8 @@ const jp: LocaleType = {
       Title: "Subscription",
       SubTitle: "Access control enabled",
       Placeholder: "Please use after subscription",
+      EndatTitle:"Subscription end at ",
+      SignIn:"Sign In"
     },
     Model: "モデル (model)",
     Temperature: {

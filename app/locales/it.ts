@@ -6,6 +6,8 @@ const it: LocaleType = {
   Error: {
     Unauthorized:
       "Accesso non autorizzato, inserire il codice di accesso nella pagina delle impostazioni.",
+    UnsignIn:
+      "please sign in for full access，click [setting](/#/settings) button subscription to sign in。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messaggi`,
@@ -157,6 +159,8 @@ const it: LocaleType = {
       Title: "Subscription",
       SubTitle: "Access control enabled",
       Placeholder: "Please use after subscription",
+      EndatTitle:"Subscription end at ",
+      SignIn:"Sign In"
     },
     Model: "Modello GPT",
     Temperature: {

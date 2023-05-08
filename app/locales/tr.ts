@@ -6,6 +6,8 @@ const tr: LocaleType = {
   Error: {
     Unauthorized:
       "Yetkisiz erişim, lütfen erişim kodunu ayarlar sayfasından giriniz.",
+    UnsignIn:
+      "please sign in for full access，click [setting](/#/settings) button subscription to sign in。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} mesaj`,
@@ -156,6 +158,8 @@ const tr: LocaleType = {
       Title: "Subscription",
       SubTitle: "Access control enabled",
       Placeholder: "Please use after subscription",
+      EndatTitle:"Subscription end at ",
+      SignIn:"Sign In"
     },
     Model: "Model",
     Temperature: {

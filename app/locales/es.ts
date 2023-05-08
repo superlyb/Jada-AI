@@ -6,6 +6,8 @@ const es: LocaleType = {
   Error: {
     Unauthorized:
       "Acceso no autorizado, por favor ingrese el código de acceso en la página de configuración.",
+    UnsignIn:
+      "please sign in for full access，click [setting](/#/settings) button subscription to sign in。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} mensajes`,
@@ -156,6 +158,8 @@ const es: LocaleType = {
       Title: "Subscription",
       SubTitle: "Access control enabled",
       Placeholder: "Please use after subscription",
+      EndatTitle:"Subscription end at ",
+      SignIn:"Sign In"
     },
     Model: "Modelo",
     Temperature: {
