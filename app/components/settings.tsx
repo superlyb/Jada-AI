@@ -143,7 +143,7 @@ interface SubscriptionModalProps {
 }
 
 
-function SubscriptionModal(SubscriptionModalProps) {
+function SubscriptionModal(SubscriptionModalProps:any) {
   function handleIframeLoad() {
     const iframe = document.querySelector('iframe');
     if (iframe) {
