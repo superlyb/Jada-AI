@@ -526,7 +526,7 @@ export function Chat() {
   ) {
     const copiedHello = Object.assign({}, BOT_HELLO);
     if (!isLoadings){
-      if (subscription === null || (subscription &&!subscription.status ==='active')){
+      if (subscription === null || (subscription &&subscription.status !=='active')){
         copiedHello.content = Locale.Error.UnsignIn;
       }
     }
