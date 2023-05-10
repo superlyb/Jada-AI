@@ -30,7 +30,7 @@ function Card({ title, description, footer, children }: Props) {
   return (
     <ListItem title= {title}>
       <div className="px-5 py-4">
-        <p className="text-zinc-300">{description}</p>
+        <p className="pb-4 sm:pb-0">{description}</p>
         {children}
       </div>
       <div className="px-5 py-4">
@@ -144,7 +144,9 @@ function Account() {
           </h1>
       </div>
       <div className={styles["user-prompt-header"]}>
+      <p className="pb-4 sm:pb-0">
       订阅
+      </p>
       </div>
       <div className="p-4">
         <Card

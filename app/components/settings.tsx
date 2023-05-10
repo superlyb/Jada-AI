@@ -35,6 +35,9 @@ import Account from "./subscription/account";
 
 //import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import {useUser } from '@/utils/useUser';
+import {
+  User
+} from '@supabase/auth-helpers-react';
 
 
 function UserPromptModal(props: { onClose?: () => void }) {
@@ -139,8 +142,8 @@ function UserPromptModal(props: { onClose?: () => void }) {
 }
 
 interface SubscriptionModalProps {
-  onClose?: (accessToken: string) => void;
-  accessToken: string;
+  onClose?: (user: User) => void;
+  user: string;
 }
 
 
@@ -151,10 +154,10 @@ function SubscriptionModal(SubscriptionModalProps:any) {
         iframe.setAttribute('crossOrigin', 'anonymous');
     }
   } 
-  const { accessToken } = SubscriptionModalProps;
+  const { user } = SubscriptionModalProps;
 
   //console.log(accessToken)
-  if (!accessToken|| accessToken === null){
+  if (!user|| user === null){
      return (
      <div className="modal-mask">
     <Modal title={Locale.Settings.Subscription.Title}
@@ -578,7 +581,7 @@ export function Settings() {
 
         {shouldShowSubscriptionModal && (
           <Modal title={Locale.Settings.Subscription.Title} >
-            <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} accessToken = {accessToken}/> 
+            <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} user = {user}/> 
             {/* to do if user is login ,dont show popup */}
           </Modal>
 

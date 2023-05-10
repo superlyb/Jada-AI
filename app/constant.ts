@@ -1,6 +1,6 @@
 export const OWNER = "Jada AI Tech";
-export const REPO = "ChatGPT-Next-Web";
-export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
+export const REPO = "AI Assistant";
+export const REPO_URL = `https://www.jadaitech.com`;
 export const ISSUE_URL = `support@bus-ai.com`;
 export const UPDATE_URL = `${REPO_URL}#keep-updated`;
 export const FETCH_COMMIT_URL = `https://api.github.com/repos/${OWNER}/${REPO}/commits?per_page=1`;
