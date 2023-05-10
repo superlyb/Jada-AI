@@ -16,6 +16,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
     const { price, quantity = 1, metadata = {} } = context;
     try {
       const supabase = createMiddlewareSupabaseClient({ req, res });
+      console.log('supabase',supabase)
       const {
         data: { user }
       } = await supabase.auth.getUser();
