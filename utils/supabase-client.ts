@@ -3,8 +3,8 @@ import {
   User
 } from '@supabase/auth-helpers-nextjs';
 
-import { ProductWithPrice } from 'types';
-import type { Database } from 'types_db';
+import { ProductWithPrice } from '../types';
+import type { Database } from '../types_db';
 
 export const supabase = createBrowserSupabaseClient<Database>();
 

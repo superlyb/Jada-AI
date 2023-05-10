@@ -1,4 +1,4 @@
-import { useState, ReactNode } from 'react';
+import { useState, ReactNode,useEffect } from 'react';
 
 import { GetServerSidePropsContext } from 'next';
 import {
@@ -17,6 +17,7 @@ import {ListItem } from "../ui-lib";
 
 import Pricing from './Pricing'
 import { getActiveProductsWithPrices } from '@/utils/supabase-client';
+import { ProductWithPrice } from '../../../types';
 
 interface Props {
   title: string;
@@ -79,10 +80,12 @@ async function getActiveProdcts(){
   return products
 }
 
-export default async function Account() {
+function Account() {
   
   const [loading, setLoading] = useState(false);
   const { isLoadings, subscription, userDetails } = useUser();
+  const [products, setProducts] = useState<ProductWithPrice[]>([])
+
 
   const redirectToCustomerPortal = async () => {
     setLoading(true);
@@ -106,7 +109,14 @@ export default async function Account() {
     }).format((subscription?.prices?.unit_amount || 0) / 100);
 
     const supabaseClient = useSupabaseClient();
-    const products = await getActiveProductsWithPrices();
+
+    useEffect(() => {
+      getActiveProdcts().then(products => {
+        setProducts(products)
+      })
+    }, [])
+
+    //products = await getActiveProductsWithPrices()
     console.log("pr",products)
 
   return (
@@ -175,3 +185,4 @@ export default async function Account() {
     </section>
   );
 }
+export default Account
