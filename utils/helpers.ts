@@ -29,8 +29,7 @@ export const postData = async ({
   });
   
   if (!res.ok) {
-    const body = await res.text();
-    console.log('Error in postData', { url, data, body});
+    console.log('Error in postData', { url, data, res});
 
     throw Error(res.statusText);
   }
