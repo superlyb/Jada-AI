@@ -56,4 +56,4 @@ export async function POST(req: NextRequest,res:NextResponse) {
 
 };
 
-export const runtime = "edge";
+//export const runtime = "edge";
