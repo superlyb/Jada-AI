@@ -61,7 +61,7 @@ const createOrRetrieveCustomer = async ({
     .select('stripe_customer_id')
     .eq('id', uuid)
     .single();
-/*   if (error || !data?.stripe_customer_id) {
+  if (error || !data?.stripe_customer_id) {
     // No customer record found, let's create one.
     const customerData: { metadata: { supabaseUUID: string }; email?: string } =
       {
@@ -78,8 +78,8 @@ const createOrRetrieveCustomer = async ({
     if (supabaseError) throw supabaseError;
     console.log(`New customer created and inserted for ${uuid}.`);
     return customer.id;
-  } */
-  return data?.stripe_customer_id;
+  }
+  return data.stripe_customer_id;
 };
 
 /**

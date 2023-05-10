@@ -19,18 +19,19 @@ export async function POST(req: NextRequest,res:NextResponse) {
     } = await supabase.auth.getUser();
 
     if (!user) throw Error('Could not get user');
+    /*
     const customer = await createOrRetrieveCustomer({
       uuid: user.id || '',
       email: user.email || ''
     });
 
     if (!customer) throw Error('Could not get customer');
-/*     const { url } = await stripe.billingPortal.sessions.create({
+     const { url } = await stripe.billingPortal.sessions.create({
       customer,
       return_url: `${getURL()}/account`
     }); */
 
-    return NextResponse.json({ customer });
+    return NextResponse.json({ user });
   } catch (err: any) {
     console.log(err);
     return NextResponse.json({ err});
