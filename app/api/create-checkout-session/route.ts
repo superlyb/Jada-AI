@@ -11,11 +11,11 @@ export async function POST(req: NextRequest,res:NextResponse) {
     // const { context} = JSON.parse(body);
     
    
-    
+    const supabase = createMiddlewareSupabaseClient({ req, res });
     const { price, quantity = 1, metadata = {} } = context;
     try {
       console.log("context",req)
-      const supabase = createMiddlewareSupabaseClient({ req, res });
+      
       console.log('supabase',supabase)
       const {
         data: { user }
