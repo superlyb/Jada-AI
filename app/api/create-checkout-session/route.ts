@@ -9,7 +9,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
      const body = await req.text();
      const context = JSON.parse(body)
     // const { context} = JSON.parse(body);
-   // console.log("context",body)
+    console.log("context",req)
    
     
     const { price, quantity = 1, metadata = {} } = context;
