@@ -6,6 +6,7 @@ import { stripe } from '@/utils/stripe';
 import { createOrRetrieveCustomer } from '@/utils/supabase-admin';
 import { getURL } from '@/utils/helpers';
 
+
 export async function POST(req: NextRequest,res:NextResponse) {
 
   //console.log("xx",req)
@@ -19,6 +20,8 @@ export async function POST(req: NextRequest,res:NextResponse) {
     } = await supabase.auth.getUser();
 
     if (!user) throw Error('Could not get user');
+
+    const st = await stripe.products.list();
     /*
     const customer = await createOrRetrieveCustomer({
       uuid: user.id || '',
@@ -31,7 +34,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
       return_url: `${getURL()}/account`
     }); */
 
-    return NextResponse.json({ user });
+    return NextResponse.json({ st });//url
   } catch (err: any) {
     console.log(err);
     return NextResponse.json({ err});
