@@ -29,7 +29,7 @@ interface Props {
 function Card({ title, description, footer, children }: Props) {
   return (
     <ListItem title= {title}>
-      <div className="px-5 py-4">
+      <div className="text-xl mt-8 mb-4 font-semibold">
         <p className="pb-4 sm:pb-0">{description}</p>
         {children}
       </div>
@@ -149,6 +149,7 @@ function Account() {
       </p>
       </div>
       <div className="p-4">
+
         <Card
           title=""
           description={
