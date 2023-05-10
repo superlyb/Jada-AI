@@ -9,11 +9,12 @@ export async function POST(req: NextRequest,res:NextResponse) {
      const body = await req.text();
      const context = JSON.parse(body)
     // const { context} = JSON.parse(body);
-    console.log("context",req)
+    
    
     
     const { price, quantity = 1, metadata = {} } = context;
     try {
+      console.log("context",req)
       const supabase = createMiddlewareSupabaseClient({ req, res });
       console.log('supabase',supabase)
       const {
