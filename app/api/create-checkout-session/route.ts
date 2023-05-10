@@ -43,7 +43,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
           trial_from_plan: true,
           metadata
         },
-        success_url: `${getURL()}/settings`,
+        success_url: `${getURL()}/`,
         cancel_url: `${getURL()}/`
       }); 
 
