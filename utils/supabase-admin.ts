@@ -70,6 +70,7 @@ const createOrRetrieveCustomer = async ({
         }
       };
     if (email) customerData.email = email;
+    const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE ??process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
     const customer = await stripe.customers.create(customerData);
     // Now insert the customer ID into our Supabase mapping table.
     const { error: supabaseError } = await supabaseAdmin

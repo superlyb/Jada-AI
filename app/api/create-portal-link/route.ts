@@ -20,10 +20,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
     } = await supabase.auth.getUser();
 
     if (!user) throw Error('Could not get user');
-    const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE ??process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-
-    const st = await stripe.products.list();
-    
+   
     const customer = await createOrRetrieveCustomer({
       uuid: user.id || '',
       email: user.email || ''
