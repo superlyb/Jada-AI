@@ -43,7 +43,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
           trial_from_plan: true,
           metadata
         },
-        success_url: `${getURL()}/`,
+        success_url: `${getURL()}/#/chat`,
         cancel_url: `${getURL()}/`
       }); 
 
