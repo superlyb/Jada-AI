@@ -11,19 +11,19 @@ export async function POST(req: NextRequest,res:NextResponse) {
     // const { context} = JSON.parse(body);
     
    
-    const supabase = createMiddlewareSupabaseClient({ req, res });
+    //const supabase = createMiddlewareSupabaseClient({ req, res });
     const { price, quantity = 1, metadata = {} } = context;
     try {
-      console.log("context",req)
+/*       console.log("context",req)
       
       console.log('supabase',supabase)
       const {
         data: { user }
       } = await supabase.auth.getUser();
 
-      console.log('user',user)
+      console.log('user',user) */
 
-      const customer = await createOrRetrieveCustomer({
+/*       const customer = await createOrRetrieveCustomer({
         uuid: user?.id || '',
         email: user?.email || ''
       });
@@ -47,9 +47,10 @@ export async function POST(req: NextRequest,res:NextResponse) {
         },
         success_url: `${getURL()}/settings`,
         cancel_url: `${getURL()}/`
-      });
+      }); */
 
-      return NextResponse.json({ sessionId: session.id });
+      //return NextResponse.json({ sessionId: session.id });
+      return NextResponse.json({ sessionId: '1212'});
     } catch (err: any) {
       console.log(err);
 
