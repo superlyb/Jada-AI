@@ -33,6 +33,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
     return NextResponse.json({ customer });
   } catch (err: any) {
     console.log(err);
+    return NextResponse.json({ err});
     //res
     //  .status(500)
     //  .json({ error: { statusCode: 500, message: err.message } });
