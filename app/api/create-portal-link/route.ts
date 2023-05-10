@@ -30,7 +30,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
       return_url: `${getURL()}/account`
     }); */
 
-    return NextResponse.json({ url });
+    return NextResponse.json({ customer });
   } catch (err: any) {
     console.log(err);
     //res
