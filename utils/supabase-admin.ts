@@ -74,12 +74,12 @@ const createOrRetrieveCustomer = async ({
     //const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE ??process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
     const customer = await stripe.customers.create(customerData);
     // Now insert the customer ID into our Supabase mapping table.
-/*     const { error: supabaseError } = await supabaseAdmin
+    const { error: supabaseError } = await supabaseAdmin
       .from('customers')
       .insert([{ id: uuid, stripe_customer_id: customer.id }]);
     if (supabaseError) throw supabaseError;
     console.log(`New customer created and inserted for ${uuid}.`);
-    return customer.id; */
+    return customer.id;
   } 
   return data?.stripe_customer_id;
   }

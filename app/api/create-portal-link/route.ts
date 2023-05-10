@@ -24,15 +24,15 @@ export async function POST(req: NextRequest,res:NextResponse) {
     const customer = await createOrRetrieveCustomer({
       uuid: user.id || '',
       email: user.email || ''
-    });
+    }); 
 
-/*     if (!customer) throw Error('Could not get customer');
+    if (!customer) throw Error('Could not get customer');
      const { url } = await stripe.billingPortal.sessions.create({
       customer,
       return_url: `${getURL()}/account`
     }); 
- */
-    return NextResponse.json({ customer });//url
+
+    return NextResponse.json({ url });//url
   } catch (err: any) {
     console.log(err);
     return new NextResponse(null, { status: 500, statusText: err.text });
@@ -43,5 +43,5 @@ export async function POST(req: NextRequest,res:NextResponse) {
 
 }
 
-export const runtime = "edge";
+//export const runtime = "edge";
 
