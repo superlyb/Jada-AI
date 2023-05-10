@@ -21,11 +21,11 @@ export async function POST(req: NextRequest,res:NextResponse) {
 
       console.log('user',user)
 
-      const customer = await createOrRetrieveCustomer({
+/*       const customer = await createOrRetrieveCustomer({
         uuid: user?.id || '',
         email: user?.email || ''
       });
-      console.log('customer',customer)
+      console.log('customer',customer) */
       
 /*       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
