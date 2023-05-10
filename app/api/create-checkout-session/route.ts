@@ -20,11 +20,14 @@ export async function POST(req: NextRequest,res:NextResponse) {
         data: { user }
       } = await supabase.auth.getUser();
 
+      console.log('user',user)
+
       const customer = await createOrRetrieveCustomer({
         uuid: user?.id || '',
         email: user?.email || ''
       });
-
+      console.log('customer',customer)
+      
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         billing_address_collection: 'required',
@@ -41,8 +44,8 @@ export async function POST(req: NextRequest,res:NextResponse) {
           trial_from_plan: true,
           metadata
         },
-        success_url: `${getURL()}/account`,
-        cancel_url: `${getURL()}/`
+        success_url: '',//`${getURL()}/account`,
+        cancel_url: ''//`${getURL()}/`
       });
 
       return NextResponse.json({ sessionId: session.id });
