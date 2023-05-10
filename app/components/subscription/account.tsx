@@ -93,7 +93,7 @@ function Account() {
       const { url, error } = await postData({
         url: '/api/create-portal-link'
       });
-      window.location.assign(url);
+     // window.location.assign(url);
     } catch (error) {
       if (error) return alert((error as Error).message);
     }
