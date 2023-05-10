@@ -23,7 +23,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
     const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE ??process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
     const st = await stripe.products.list();
-    /*
+    
     const customer = await createOrRetrieveCustomer({
       uuid: user.id || '',
       email: user.email || ''
@@ -33,9 +33,9 @@ export async function POST(req: NextRequest,res:NextResponse) {
      const { url } = await stripe.billingPortal.sessions.create({
       customer,
       return_url: `${getURL()}/account`
-    }); */
+    }); 
 
-    return NextResponse.json({ st });//url
+    return NextResponse.json({ url });//url
   } catch (err: any) {
     console.log(err);
     return NextResponse.json({ err});
