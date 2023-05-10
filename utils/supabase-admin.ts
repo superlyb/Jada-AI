@@ -56,7 +56,8 @@ const createOrRetrieveCustomer = async ({
   email: string;
   uuid: string;
 }) => {
-  const { data, error } = await supabaseAdmin
+  try{
+    const { data, error } = await supabaseAdmin
     .from('customers')
     .select('stripe_customer_id')
     .eq('id', uuid)
@@ -81,6 +82,12 @@ const createOrRetrieveCustomer = async ({
     return customer.id;
   }
   return data.stripe_customer_id;
+  }
+  catch (err: any) {
+    console.log(err);
+    return err;
+  }
+ 
 };
 
 /**
