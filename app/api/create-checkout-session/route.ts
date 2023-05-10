@@ -21,13 +21,13 @@ export async function POST(req: NextRequest,res:NextResponse) {
 
       console.log('user',user)
 
-/*       const customer = await createOrRetrieveCustomer({
+      const customer = await createOrRetrieveCustomer({
         uuid: user?.id || '',
         email: user?.email || ''
       });
-      console.log('customer',customer) */
+      console.log('customer',customer)
       
-/*       const session = await stripe.checkout.sessions.create({
+      const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         billing_address_collection: 'required',
         customer,
@@ -45,10 +45,10 @@ export async function POST(req: NextRequest,res:NextResponse) {
         },
         success_url: `${getURL()}/settings`,
         cancel_url: `${getURL()}/`
-      }); */
+      });
 
-      //return NextResponse.json({ sessionId: session.id });
-      return NextResponse.json({ sessionId: user});
+      return NextResponse.json({ sessionId: session.id });
+      //return NextResponse.json({ sessionId: customer});
     } catch (err: any) {
       console.log(err);
 
