@@ -27,6 +27,7 @@ const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
     Component = 'button',
     ...rest
   } = props;
+  Button.displayName = "Button";
   const ref = useRef(null);
   const rootClassName = cn(
     styles.root,

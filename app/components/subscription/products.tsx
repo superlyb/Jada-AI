@@ -3,7 +3,7 @@ import { GetStaticPropsResult } from 'next';
 import Pricing from './Pricing';
 import { getActiveProductsWithPrices ,} from '@/utils/supabase-client';
 import { Product,ProductWithPrice } from '../../../types';
-import {useSupabaseClient } from '@supabase/auth-helpers-react';
+//import {useSupabaseClient } from '@supabase/auth-helpers-react';
 
 interface Props {
   products: Product[];
@@ -13,7 +13,7 @@ export default function PricingPage({ products }: Props) {
   return <Pricing products={products} />;
 }
 
-export const getAProductsWithPrices = async (): Promise<
+/* export const getAProductsWithPrices = async (): Promise<
   ProductWithPrice[]
 > => {
   const supabaseClient = useSupabaseClient();
@@ -32,7 +32,7 @@ export const getAProductsWithPrices = async (): Promise<
   // TODO: improve the typing here.
   return (data as any) || [];
 };
-
+ */
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
 
