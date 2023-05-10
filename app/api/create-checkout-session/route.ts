@@ -48,7 +48,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
       }); */
 
       //return NextResponse.json({ sessionId: session.id });
-      return NextResponse.json({ sessionId: '1212'});
+      return NextResponse.json({ sessionId: user});
     } catch (err: any) {
       console.log(err);
 
