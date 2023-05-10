@@ -80,6 +80,7 @@ async function getActiveProdcts(){
 }
 
 export default async function Account() {
+  
   const [loading, setLoading] = useState(false);
   const { isLoadings, subscription, userDetails } = useUser();
 
