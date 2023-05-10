@@ -11,25 +11,23 @@ export async function POST(req: NextRequest,res:NextResponse) {
     // const { context} = JSON.parse(body);
     
    
-    const supabase = createMiddlewareSupabaseClient({ req, res });
+    
     const { price, quantity = 1, metadata = {} } = context;
     try {
-/*       console.log("context",req)
-      
-      console.log('supabase',supabase)
+      const supabase = createMiddlewareSupabaseClient({ req, res });
       const {
         data: { user }
       } = await supabase.auth.getUser();
 
-      console.log('user',user) */
+      console.log('user',user)
 
-/*       const customer = await createOrRetrieveCustomer({
+      const customer = await createOrRetrieveCustomer({
         uuid: user?.id || '',
         email: user?.email || ''
       });
       console.log('customer',customer)
       
-      const session = await stripe.checkout.sessions.create({
+/*       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         billing_address_collection: 'required',
         customer,
