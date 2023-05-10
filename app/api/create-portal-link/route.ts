@@ -26,13 +26,13 @@ export async function POST(req: NextRequest,res:NextResponse) {
       email: user.email || ''
     });
 
-    if (!customer) throw Error('Could not get customer');
+/*     if (!customer) throw Error('Could not get customer');
      const { url } = await stripe.billingPortal.sessions.create({
       customer,
       return_url: `${getURL()}/account`
     }); 
-
-    return NextResponse.json({ url });//url
+ */
+    return NextResponse.json({ customer });//url
   } catch (err: any) {
     console.log(err);
     return new NextResponse(null, { status: 500, statusText: err.text });
