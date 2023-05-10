@@ -6,7 +6,7 @@ const cn = {
     Unauthorized:
       "现在是未授权状态，请点击左下角[设置](/#/settings)按钮输入访问密码。",
     UnsignIn:
-      "现在是未登录状态，请点击左下角[设置](/#/settings)按钮subscription登录。",
+      "现在是未订阅状态，请点击左下角[设置](/#/settings)按钮点击订阅按钮。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,

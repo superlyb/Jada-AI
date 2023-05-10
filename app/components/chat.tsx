@@ -414,6 +414,9 @@ export function Chat() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(measure, [userInput]);
 
+  const {isLoadings,subscription, userDetails} = useUser();
+  //console.log("XXXXA",subscription);
+
   // only search prompts when user input is short
   const SEARCH_TEXT_LIMIT = 30;
   const onInput = (text: string) => {
@@ -429,6 +432,13 @@ export function Chat() {
         let searchText = text.slice(1);
         onSearch(searchText);
       }
+    }
+    
+    if (!isLoadings&&subscription !== null&& subscription.status !== undefined){
+      chatStore.updateSubscription(subscription.status.toString())
+    }
+    else{
+      chatStore.updateSubscription('trail')
     }
   };
 
@@ -516,8 +526,7 @@ export function Chat() {
 
   const context: RenderMessage[] = session.mask.context.slice();
 
-  const {isLoadings,subscription, userDetails} = useUser();
-  //console.log("XXXXA",subscription);
+
   const accessStore = useAccessStore();
 
   if (
@@ -530,20 +539,22 @@ export function Chat() {
         copiedHello.content = Locale.Error.UnsignIn;
       }
     }
-    else{
-      if (subscription != null&&(subscription.status ==='active')){
-        chatStore.updateSubscription(subscription.status )
-      }
-    }
-    console.log("chatstore",chatStore)
 /*     if (!accessStore.isAuthorized()) {
         copiedHello.content = Locale.Error.UnsignIn;
 
     } */
-    
-
     context.push(copiedHello);
   }
+
+ // console.log("orgiaa",subscription.status)
+//  if (chatStore.isSubscription ===""){
+  //  console.log("orgi",chatStore.isSubscription)
+
+//  }
+//  else {
+    //console.log("orgi",chatStore.isSubscription)
+//  }
+   
 
   // preview messages
   const messages = context

@@ -55,7 +55,7 @@ export const useAccessStore = create<AccessControlStore>()(
         })
           .then((res) => res.json())
           .then((res: DangerConfig) => {
-            console.log("[Config] got config from server", res);
+      //      console.log("[Config] got config from server", res);
             set(() => ({ ...res }));
 
             if ((res as any).botHello) {

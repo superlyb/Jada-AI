@@ -165,63 +165,79 @@ export async function requestChatStream(
 
   console.log("[Request] ", req);
 
+  const subcriptionStatus = useChatStore.getState().isSubscription
+
+  //console.log("status",subcriptionStatus)
+
   const controller = new AbortController();
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS);
 
   try {
-    const res = await fetch("/api/chat-stream", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        path: "v1/chat/completions",
-        ...getHeaders(),
-      },
-      body: JSON.stringify(req),
-      signal: controller.signal,
-    });
-    clearTimeout(reqTimeoutId);
-
-    let responseText = "";
-
-    const finish = () => {
-      options?.onMessage(responseText, true);
-      controller.abort();
-    };
-
-    if (res.ok) {
-      const reader = res.body?.getReader();
-      const decoder = new TextDecoder();
-
-      options?.onController?.(controller);
-
-      while (true) {
-        const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS);
-        const content = await reader?.read();
-        clearTimeout(resTimeoutId);
-
-        if (!content || !content.value) {
-          break;
+    console.log("what",subcriptionStatus)
+    if (subcriptionStatus ==="active"){
+      const res = await fetch("/api/chat-stream", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          path: "v1/chat/completions",
+          ...getHeaders(),
+        },
+        body: JSON.stringify(req),
+        signal: controller.signal,
+      });
+      clearTimeout(reqTimeoutId);
+  
+      let responseText = "";
+  
+      const finish = () => {
+        options?.onMessage(responseText, true);
+        controller.abort();
+      };
+  
+      if (res.ok) {
+        const reader = res.body?.getReader();
+        const decoder = new TextDecoder();
+  
+        options?.onController?.(controller);
+  
+        while (true) {
+          const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS);
+          const content = await reader?.read();
+          clearTimeout(resTimeoutId);
+  
+          if (!content || !content.value) {
+            break;
+          }
+  
+          const text = decoder.decode(content.value, { stream: true });
+          responseText += text;
+  
+          const done = content.done;
+          options?.onMessage(responseText, false);
+  
+          if (done) {
+            break;
+          }
         }
-
-        const text = decoder.decode(content.value, { stream: true });
-        responseText += text;
-
-        const done = content.done;
-        options?.onMessage(responseText, false);
-
-        if (done) {
-          break;
-        }
+  
+        finish();
+      } else if (res.status === 401) {
+        console.error("Unauthorized");
+        options?.onError(new Error("Unauthorized"), res.status);
+      } else {
+        console.error("Stream Error", res.body);
+        options?.onError(new Error("Stream Error"), res.status);
       }
 
-      finish();
-    } else if (res.status === 401) {
-      console.error("Unauthorized");
-      options?.onError(new Error("Unauthorized"), res.status);
-    } else {
-      console.error("Stream Error", res.body);
-      options?.onError(new Error("Stream Error"), res.status);
     }
+    else{
+      const emptyResponse = new Response(null, {
+        status: 401,
+      });
+      console.error("UnsignIn");
+      options?.onError(new Error("UnsignIn"), 401);
+    }
+      
   } catch (err) {
     console.error("NetWork Error", err);
     options?.onError(err as Error);

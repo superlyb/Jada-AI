@@ -105,7 +105,7 @@ interface ChatStore {
   getMemoryPrompt: () => Message;
 
   clearAllData: () => void;
-  updateSubscription: (isSubscription:string) => void;
+  updateSubscription: (status:string) => void;
 }
 
 function countMessages(msgs: Message[]) {
@@ -294,7 +294,7 @@ export const useChatStore = create<ChatStore>()(
           },
           onError(error, statusCode) {
             if (statusCode === 401) {
-              botMessage.content = Locale.Error.Unauthorized;
+              botMessage.content = Locale.Error.UnsignIn;
             } else if (!error.message.includes("aborted")) {
               botMessage.content += "\n\n" + Locale.Store.Error;
             }
@@ -485,8 +485,11 @@ export const useChatStore = create<ChatStore>()(
         updater(sessions[index]);
         set(() => ({ sessions }));
       },
-      updateSubscription(isSubscription) {
-        set({ isSubscription });
+      updateSubscription(status) {
+       // console.log('Status:', status);
+        set(() => ({
+          isSubscription: status,
+        }));
       },
       clearAllData() {
         localStorage.clear();

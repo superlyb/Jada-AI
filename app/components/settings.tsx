@@ -30,7 +30,8 @@ import { InputRange } from "./input-range";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarPicker } from "./emoji";
 
-import SignIn from "./signin"
+import SignIn from "./subscription/signin"
+import Account from "./subscription/account";
 
 //import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import {useUser } from '@/utils/useUser';
@@ -152,7 +153,7 @@ function SubscriptionModal(SubscriptionModalProps:any) {
   } 
   const { accessToken } = SubscriptionModalProps;
 
-  console.log(accessToken)
+  //console.log(accessToken)
   if (!accessToken|| accessToken === null){
      return (
      <div className="modal-mask">
@@ -168,10 +169,17 @@ function SubscriptionModal(SubscriptionModalProps:any) {
     
   }
   else{
-  //  useEffect(() => {
-      window.location.href = 'https://subscription-test-5xpt.vercel.app/account'//'https://www.jadaitech.com/';
-  //  }, []);
-    return null;
+    return (
+      <div className="modal-mask">
+     <Modal title={Locale.Settings.Subscription.Title}
+            onClose={() => SubscriptionModalProps.onClose?.()} >
+           <div className={styles["user-prompt-modal"]}>
+             <Account/>
+           
+           </div>
+     </Modal> 
+     </div>    
+     ); 
   }
   
 };

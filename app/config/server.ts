@@ -1,9 +1,5 @@
 import md5 from "spark-md5";
 
-import {
-  useAccessStore,
-} from "../store";
-
 
 declare global {
   namespace NodeJS {
@@ -41,7 +37,7 @@ export const getServerSideConfig = () => {
     apiKey: process.env.OPENAI_API_KEY,
     code: process.env.CODE,
     codes: ACCESS_CODES,
-    needCode: true,//ACCESS_CODES.size > 0, whether auth hereby control
+    needCode: false,//ACCESS_CODES.size > 0, whether auth hereby control
     proxyUrl: process.env.PROXY_URL,
     isVercel: !!process.env.VERCEL,
   };
