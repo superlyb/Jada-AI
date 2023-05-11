@@ -574,6 +574,15 @@ export function Settings() {
             }}
           />
         </List>
+        <List>
+          <ListItem
+              title={Locale.Settings.About.Title}
+              subTitle = {Locale.Settings.About.SubTitle}
+            >
+
+            </ListItem>
+          
+        </List>
 
         {shouldShowPromptModal && (
           <UserPromptModal onClose={() => setShowPromptModal(false)} />

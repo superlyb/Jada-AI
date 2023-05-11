@@ -177,6 +177,10 @@ const tr: LocaleType = {
       SubTitle:
         "Daha büyük bir değer, yeni konular hakkında konuşma olasılığını artırır",
     },
+    About:{
+      Title:"About",
+      SubTitle: "Jada AI Tech B.V",
+    },
   },
   Store: {
     DefaultTopic: "Yeni Konuşma",

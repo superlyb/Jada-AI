@@ -176,6 +176,10 @@ const it: LocaleType = {
       SubTitle:
         "Un valore maggiore aumenta la probabilità di parlare di nuovi argomenti",
     },
+    About:{
+      Title:"About",
+      SubTitle: "Jada AI Tech B.V",
+    },
   },
   Store: {
     DefaultTopic: "Nuova conversazione",

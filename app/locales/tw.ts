@@ -171,6 +171,10 @@ const tw: LocaleType = {
       Title: "話題新穎度 (presence_penalty)",
       SubTitle: "值越大，越有可能擴展到新話題",
     },
+    About:{
+      Title:"About",
+      SubTitle: "Jada AI Tech B.V",
+    },
   },
   Store: {
     DefaultTopic: "新的對話",
