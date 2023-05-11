@@ -460,7 +460,7 @@ export function Settings() {
       <List>
             <ListItem
               title={Locale.Settings.Subscription.Title}
-              subTitle={subscription?.status === 'active'
+              subTitle={(subscription?.status === 'active' || subscription?.status === 'trialing')
               ? new Date(subscription.current_period_end).toLocaleDateString()
               : subscription?.status ?? Locale.Settings.Subscription.SubTitle}
             >
