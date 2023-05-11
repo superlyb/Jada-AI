@@ -7,7 +7,7 @@ const en: LocaleType = {
     Unauthorized:
       "Unauthorized access, please enter access code in settings page.",
     UnsignIn:
-      "please sign in for full access，click [setting](/#/settings) button subscription to sign in。",
+      "please subscribe for full access，click [setting](/#/settings) button subscription to subscribe。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messages`,
