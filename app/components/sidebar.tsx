@@ -10,6 +10,7 @@ import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import MaskIcon from "../icons/mask.svg";
 import PluginIcon from "../icons/plugin.svg";
+import MailIcon from "../icons/mail.svg"
 
 import Locale from "../locales";
 
@@ -146,11 +147,11 @@ export function SideBar(props: { className?: string }) {
               <IconButton icon={<SettingsIcon />} shadow />
             </Link>
           </div>
-{/*           <div className={styles["sidebar-action"]}>
-            <a href={REPO_URL} target="_blank">
-              <IconButton icon={<GithubIcon />} shadow />
+          <div className={styles["sidebar-action"]}>
+            <a href="mailto:support@bus-ai.com"  target="_blank">
+              <IconButton icon={<MailIcon/>} shadow />
             </a>
-          </div> */}
+          </div> 
         </div>
         <div>
           <IconButton
