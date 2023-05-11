@@ -43,12 +43,14 @@ const SignIn = (props: { onClose?: () => void }) => {
                       email_label: '邮箱',
                       password_label: '密码',
                       button_label:'注册',
-                      link_text:'还没有账户?点击注册'
+                      link_text:'还没有账户?点击注册',
+                      confirmation_text:'请去邮箱验证注册'
                    },
                     sign_in: {
                       email_label: '邮箱',
                       password_label: '密码',
-                      button_label:'登录'
+                      button_label:'登录',
+                      link_text:'已有账号？登录',
                     },
                     forgotten_password: {
                       email_label:'邮箱',
