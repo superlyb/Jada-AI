@@ -26,20 +26,6 @@ const SignIn = (props: { onClose?: () => void }) => {
             <div className="flex flex-col space-y-4">
              <Auth
                 supabaseClient={supabaseClient}
-                providers={['github']}
-                //redirectTo={getURL()}
-                magicLink={true}
-                appearance={{
-                  theme: ThemeSupa,
-                  variables: {
-                    default: {
-                      colors: {
-                        brand: '#404040',
-                        brandAccent: '#52525b'
-                      }
-                    }
-                  }
-                }}
                 localization={{
                   variables: {
                     sign_up: {
@@ -60,6 +46,20 @@ const SignIn = (props: { onClose?: () => void }) => {
                       link_text:'忘记密码？'
                     },
                   },
+                }}
+                providers={['github']}
+                //redirectTo={getURL()}
+                magicLink={true}
+                appearance={{
+                  theme: ThemeSupa,
+                  variables: {
+                    default: {
+                      colors: {
+                        brand: '#404040',
+                        brandAccent: '#52525b'
+                      }
+                    }
+                  }
                 }}
                 theme="light"
               /> 
