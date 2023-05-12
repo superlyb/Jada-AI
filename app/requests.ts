@@ -174,7 +174,7 @@ export async function requestChatStream(
 
   try {
     //console.log("what",subcriptionStatus)
-    if (subcriptionStatus ==="active"||subcriptionStatus ==="trialing"){
+    if (subcriptionStatus ==="active"){
       const res = await fetch("/api/chat-stream", {
         method: "POST",
         headers: {
