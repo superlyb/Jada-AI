@@ -173,8 +173,8 @@ export async function requestChatStream(
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS);
 
   try {
-    console.log("what",subcriptionStatus)
-    if (subcriptionStatus ==="active"){
+    //console.log("what",subcriptionStatus)
+    if (subcriptionStatus ==="active"||subcriptionStatus ==="trialing"){
       const res = await fetch("/api/chat-stream", {
         method: "POST",
         headers: {
