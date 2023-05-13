@@ -44,7 +44,7 @@ const SignIn = (props: { onClose?: () => void }) => {
                       password_label: '密码',
                       button_label:'注册',
                       link_text:'还没有账户?点击注册',
-                      confirmation_text:'请去邮箱验证注册'
+                      confirmation_text:'请去邮箱验证,如果没有收到请检查垃圾邮件'
                    },
                     sign_in: {
                       email_label: '邮箱',
