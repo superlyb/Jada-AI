@@ -40,11 +40,11 @@ const SignIn = (props: { onClose?: () => void }) => {
                 localization={{
                   variables: {
                     sign_up: {
-                      email_label: '邮箱',
+                      email_label: '邮箱(!激活邮件可能在垃圾邮件里!)',
                       password_label: '密码',
                       button_label:'注册',
                       link_text:'还没有账户?点击注册',
-                      confirmation_text:'已注册，请去邮箱验证,如果没有收到请检查垃圾邮件'
+                      confirmation_text:'已注册，请去邮箱激活,如果没有收到请检查垃圾邮件'
                    },
                     sign_in: {
                       email_label: '邮箱',
