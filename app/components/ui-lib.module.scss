@@ -74,6 +74,7 @@
   border-radius: 12px;
   width: 60vw;
   animation: slide-in ease 0.3s;
+ // height:60vh;
 
   --modal-padding: 20px;
 
@@ -99,7 +100,7 @@
   }
 
   .modal-content {
-    max-height: 40vh;
+    max-height: 50vh;
     padding: var(--modal-padding);
     overflow: auto;
   }
