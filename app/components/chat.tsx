@@ -547,11 +547,13 @@ export function Chat() {
     const copiedHello = Object.assign({}, BOT_HELLO);
     //console.log("one_time",one_time)
     if (!isLoadings){
-      if (subscription === null || (subscription &&subscription.status !=='active' || one_time === null || (one_time &&one_time.status !=='trialing' ))){
+      if (subscription === null || (subscription &&subscription.status !=='active'))
         copiedHello.content = Locale.Error.UnsignIn;
       }
-
-    }
+      else if (one_time === null || (one_time &&one_time.status !=='trialing' )){
+        copiedHello.content = Locale.Error.UnsignIn;
+  
+      }
 /*     if (!accessStore.isAuthorized()) {
         copiedHello.content = Locale.Error.UnsignIn;
 
