@@ -185,9 +185,77 @@ const manageSubscriptionStatusChange = async (
     );
 };
 
+const manageOneTimeStatus = async (
+  subscriptionId: string,
+  customerId: string,
+  price:number,
+  createAction = false
+) => {
+  // Get customer's UUID from mapping table.
+  const { data: customerData, error: noCustomerError } = await supabaseAdmin
+    .from('customers')
+    .select('id')
+    .eq('stripe_customer_id', customerId)
+    .single();
+  if (noCustomerError) throw noCustomerError;
+
+  const { id: uuid } = customerData!;
+
+  const { data: pricedata, error: nopriceError } = await supabaseAdmin
+    .from('prices')
+    .select('id')
+    .eq('type', 'one_time')
+    .eq('unit_amount',price)
+    .single();
+
+    if (nopriceError) throw nopriceError;
+  let currentTimestamp = new Date()
+  let futureTimestamp = new Date();
+      futureTimestamp.setDate(futureTimestamp.getDate() + 30);// one_time used 30days
+  // Upsert the latest status of the subscription object.
+  const one_timeData: Database['public']['Tables']['one_time']['Insert'] =
+    {
+      id: subscriptionId,
+      user_id: uuid,
+      metadata: '',
+      status: 'trialing',
+      price_id: pricedata.id,
+      //TODO check quantity on subscription
+      // @ts-ignore
+      quantity: 1,
+      cancel_at_period_end: null,
+      cancel_at:  null,
+      canceled_at: null,
+      current_period_start: currentTimestamp.toISOString(),
+      current_period_end: futureTimestamp.toISOString(),
+      created: currentTimestamp.toISOString(),
+      ended_at:  null,
+      trial_start: currentTimestamp.toISOString(),
+      trial_end: futureTimestamp.toISOString()
+    };
+
+  const { error } = await supabaseAdmin
+    .from('one_time')
+    .upsert([one_timeData]);
+  if (error) throw error;
+  console.log(
+    `Inserted/updated subscription [${subscriptionId}] for user [${uuid}]`
+  );
+
+  // For a new subscription copy the billing details to the customer object.
+  // NOTE: This is a costly operation and should happen at the very end.
+/*   if (createAction && subscription.default_payment_method && uuid)
+    //@ts-ignore
+    await copyBillingDetailsToCustomer(
+      uuid,
+      subscription.default_payment_method as Stripe.PaymentMethod
+    ); */
+};
+
 export {
   upsertProductRecord,
   upsertPriceRecord,
   createOrRetrieveCustomer,
-  manageSubscriptionStatusChange
+  manageSubscriptionStatusChange,
+  manageOneTimeStatus
 };

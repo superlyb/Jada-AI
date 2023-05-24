@@ -1,0 +1,110 @@
+.Navbar {
+  background: #ffffff;
+  padding-top: 24px;
+  min-height: calc(100vh - 24px);
+}
+.Navbar-StepOne {
+  margin: 0 0 0;
+  width: 320px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  display: flex;
+}
+.BusinessModelButton {
+  flex: 1;
+  width: 100%;
+  text-align: left;
+  margin: 4px 0;
+  background-color: rgb(200, 232, 231);
+  border: none;
+  border-radius: 6px;
+  color: var(--text-gray);
+  border: var(--border);
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  padding: 11px;
+  box-sizing: border-box;
+}
+
+.BusinessModelButton-IconWrapper {
+  position: relative;
+  top: 2px;
+}
+
+.BusinessModelButton:active {
+  background-color: rgb(104, 190, 187);
+}
+
+/* Firefox has wacky svg alignment */
+.Demo--Firefox .BusinessModelButton-IconWrapper {
+  top: 4px;
+}
+
+.BusinessModelButtonClicked{
+  background-color: rgb(58, 144, 142);
+  border-color:rgb(226, 237, 237) ;
+  flex: 1;
+  width: 100%;
+  text-align: left;
+  margin: 4px 0;
+  border-radius: 6px;
+  color: var(--text-gray);
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  padding: 11px;
+  box-sizing: border-box;
+}
+
+
+.BusinessModelButton-TextWrapper {
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.BusinessModelButton-TextWrapper h3 {
+  font-weight: normal;
+  color: var(--text-default);
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.BusinessModelButton-TextWrapper p {
+  color: var(--text-gray);
+  font-size: 14px;
+  margin: 0;
+}
+
+@media (min-width: 500px) {
+  .BusinessModelButton {
+    width: initial;
+    margin: 4px;
+  }
+
+  .BusinessModelButton:first-child {
+    margin-left: 0;
+  }
+
+  .BusinessModelButton:last-child {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .BusinessModelButton {
+    width: initial;
+    margin: 4px;
+  }
+
+  .BusinessModelButton:first-child {
+    margin-left: 0;
+  }
+
+  .BusinessModelButton:last-child {
+    margin-right: 0;
+  }
+}

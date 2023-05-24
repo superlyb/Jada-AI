@@ -19,6 +19,8 @@ import Pricing from './Pricing'
 import { getActiveProductsWithPrices } from '@/utils/supabase-client';
 import { ProductWithPrice } from '../../../types';
 
+import accountstyle from './account.module.scss'
+
 interface Props {
   title: string;
   description?: string;
@@ -28,7 +30,7 @@ interface Props {
 
 function Card({ title, description, footer, children }: Props) {
   return (
-    <ListItem title= {title}>
+    <section>
       <div className="text-xl mt-8 mb-4 font-semibold">
         <p className="pb-4 sm:pb-0">{description}</p>
         {children}
@@ -36,7 +38,7 @@ function Card({ title, description, footer, children }: Props) {
       <div className="px-5 py-4">
         {footer}
       </div>
-    </ListItem>
+    </section>
 
   );
 }
@@ -83,7 +85,7 @@ async function getActiveProdcts(){
 function Account() {
   
   const [loading, setLoading] = useState(false);
-  const { isLoadings, subscription, userDetails } = useUser();
+  const { isLoadings, subscription, userDetails,one_time } = useUser();
   const [products, setProducts] = useState<ProductWithPrice[]>([])
 
 
@@ -117,14 +119,17 @@ function Account() {
     }, [])
 
     //products = await getActiveProductsWithPrices()
-    console.log("pr",products)
+    //console.log("pr",subscription)
 
   return (
 
     <section className={styles["user-prompt-modal"]}>
-        <div className={styles["user-prompt-header"]}>
+        <div className={accountstyle["Navbar"]}>
+          <div className={accountstyle["Navbar-ColumnLeft"]}>
+            账户
+          </div>
             {userDetails ? (
-              <span className={styles["user-prompt-buttons"]}
+              <div className={accountstyle["Navbar-ColumnRight"]}
                 //className={s.link}
                 onClick={async () => {
                   await supabaseClient.auth.signOut();
@@ -132,59 +137,54 @@ function Account() {
                 }}
               >
                 登出
-              </span>
+              </div>
             ) : (
               <div>
               </div>
             )}
-        </div>  
-       <div className={styles["user-prompt-header"]}>
-          <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-            账户
-          </h1>
       </div>
-      <div className={styles["user-prompt-header"]}>
-      <p className="pb-4 sm:pb-0">
+      <div>
+      <p>
       订阅
       </p>
       </div>
-      <div className="p-4">
-
+      <div className='max-w-6xl mx-auto py-8 sm:py-24 px-4 sm:px-6 lg:px-8'>
         <Card
-          title=""
-          description={
-            subscription
-              ? `You are currently on the ${subscription?.prices?.products?.name} plan.`
-              : ''
-          }
-          footer={
-            <div className="flex items-start justify-between flex-col sm:flex-row sm:items-center">
-              <p className="pb-4 sm:pb-0">
-                管理订阅
-              </p>
-              <Button
-                variant="slim"
-                loading={loading}
-                disabled={loading || !subscription}
-                onClick={redirectToCustomerPortal}
-              >
-                打开订阅平台
-              </Button>
-            </div>
-          }
-        >
-          <div className="text-xl mt-8 mb-4 font-semibold">
-            {isLoadings ? (
-              <div className="h-12 mb-6">
+            title=""
+            description={
+              subscription
+                ? `当前订阅:${subscription?.prices?.products?.name}`
+                : one_time?'当前是体验版':''
+            }
+            footer={
+              <div className="flex ">
+                <p className="">
+                  管理订阅
+                </p>
+                <Button
+                  variant="slim"
+                  loading={loading}
+                  disabled={loading || !subscription}
+                  onClick={redirectToCustomerPortal}
+                >
+                  打开订阅平台
+                </Button>
               </div>
-            ) : subscription ? (
-              `${subscriptionPrice}/${subscription?.prices?.interval}`
-            ) : (
-                <Pricing products={products}/>          
-            )}
-          </div>
-        </Card>
+            } 
+          >
+            <div>
+              {isLoadings ? (
+                <div >
+                </div>
+              ) : subscription ? (
+                `${subscriptionPrice}/${subscription?.prices?.interval}`
+              ) : (
+                  <Pricing products={products}/>          
+              )}
+            </div>
+          </Card>
       </div>
+        
     </section>
   );
 }

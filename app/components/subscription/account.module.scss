@@ -1,0 +1,40 @@
+/* Styles for mobile */
+@media screen and (max-width: 600px) {
+  .Navbar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.Navbar {
+    background: #ffffff;
+    padding-top: 2px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .Navbar-Title h1 {
+    margin: 14px 0;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .Navbar-Links {
+    display: flex;
+    align-items: center;
+  }
+  .Navbar-ColumnLeft,
+  .Navbar-ColumnRight {
+    display: flex;
+  }
+  
+  .Navbar-ColumnLeft {
+    position: relative;
+    top: 0;
+    left: 0;
+    font-weight:bold;
+    
+  }
+  
+  .Navbar-ColumnRight {
+    top: 0;
+    right: 0;
+    font-weight:bold;
+  }

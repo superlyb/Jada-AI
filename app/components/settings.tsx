@@ -204,7 +204,7 @@ export function Settings() {
   const hasNewVersion = currentVersion !== remoteId;
   
 
-  const { isLoadings, subscription, user,accessToken} = useUser();
+  const { isLoadings, subscription, user,one_time} = useUser();
 /*   function checkUpdate(force = false) {
     setCheckingUpdate(true);
     updateStore.getLatestVersion(force).then(() => {
@@ -462,7 +462,7 @@ export function Settings() {
               title={Locale.Settings.Subscription.Title}
               subTitle={(subscription?.status === 'active' || subscription?.status === 'trialing')
               ? new Date(subscription.current_period_end).toLocaleDateString()
-              : subscription?.status ?? Locale.Settings.Subscription.SubTitle}
+              : ((one_time?.status ==='trialing')?new Date(one_time.current_period_end).toLocaleDateString():Locale.Settings.Subscription.SubTitle)}
             >
             <IconButton
               icon={<EditIcon />}

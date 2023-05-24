@@ -7,6 +7,7 @@ async function createStream(req: NextRequest) {
   const decoder = new TextDecoder();
 
   const res = await requestOpenai(req);
+ // console.log(res)
 
   const contentType = res.headers.get("Content-Type") ?? "";
   if (!contentType.includes("stream")) {

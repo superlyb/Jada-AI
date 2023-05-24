@@ -66,6 +66,9 @@ import {
 
 import {useUser } from '@/utils/useUser';
 
+//import StartButton, { startStates } from './startbutton'
+
+
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
 });
@@ -371,6 +374,10 @@ export function Chat() {
   const isMobileScreen = useMobileScreen();
   const navigate = useNavigate();
 
+  //for microphone
+
+ // microphone end
+
   const onChatBodyScroll = (e: HTMLElement) => {
     const isTouchBottom = e.scrollTop + e.clientHeight >= e.scrollHeight - 20;
     setHitBottom(isTouchBottom);
@@ -414,8 +421,8 @@ export function Chat() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(measure, [userInput]);
 
-  const {isLoadings,subscription, userDetails} = useUser();
-  //console.log("XXXXA",subscription);
+  const {isLoadings,subscription, userDetails,one_time} = useUser();
+  //console.log("XXXXA",one_time);
 
   // only search prompts when user input is short
   const SEARCH_TEXT_LIMIT = 30;
@@ -437,8 +444,11 @@ export function Chat() {
     if (!isLoadings&&subscription !== null&& subscription.status !== undefined){
       chatStore.updateSubscription(subscription.status.toString())
     }
+    else if (!isLoadings&&one_time !== null&& one_time.status !== undefined){
+      chatStore.updateSubscription(one_time.status.toString())
+    }
     else{
-      chatStore.updateSubscription('trail')
+      chatStore.updateSubscription('inactive')// to add one_time
     }
   };
 
@@ -523,6 +533,7 @@ export function Chat() {
     chatStore.onUserInput(content).then(() => setIsLoading(false));
     inputRef.current?.focus();
   };
+    
 
   const context: RenderMessage[] = session.mask.context.slice();
 
@@ -534,10 +545,12 @@ export function Chat() {
     session.messages.at(0)?.content !== BOT_HELLO.content
   ) {
     const copiedHello = Object.assign({}, BOT_HELLO);
+    //console.log("one_time",one_time)
     if (!isLoadings){
-      if (subscription === null || (subscription &&subscription.status !=='active')){
+      if (subscription === null || (subscription &&subscription.status !=='active' || one_time === null || (one_time &&one_time.status !=='trialing' ))){
         copiedHello.content = Locale.Error.UnsignIn;
       }
+
     }
 /*     if (!accessStore.isAuthorized()) {
         copiedHello.content = Locale.Error.UnsignIn;
@@ -792,6 +805,7 @@ export function Chat() {
             rows={inputRows}
             autoFocus={autoFocus}
           />
+{/*           <StartButton ></StartButton> */}
           <IconButton
             icon={<SendWhiteIcon />}
             text={Locale.Chat.Send}
