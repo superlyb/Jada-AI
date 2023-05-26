@@ -20,6 +20,7 @@ import DarkIcon from "../icons/dark.svg";
 import AutoIcon from "../icons/auto.svg";
 import BottomIcon from "../icons/bottom.svg";
 import StopIcon from "../icons/pause.svg";
+import PlayIcon from "../icons/play.svg";
 
 import {
   Message,
@@ -67,6 +68,8 @@ import {
 import {useUser } from '@/utils/useUser';
 
 //import StartButton, { startStates } from './startbutton'
+
+import txt2speech from "./txt2speech"
 
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
@@ -351,6 +354,17 @@ export function ChatActions(props: {
       </div>
     </div>
   );
+}
+
+function  userplayhandler(txt:string)  {
+  /**
+   * TODO: Play audio data
+   */
+
+ // setAudioFile(file)
+ // setOpenAudioDialog(true)
+  txt2speech(txt,false)
+  
 }
 
 export function Chat() {
@@ -777,6 +791,9 @@ export function Chat() {
                   </div>
                 )}
               </div>
+              {!isUser? <div className={styles["chat-message-read"]}>
+                      <IconButton icon={<PlayIcon />} onClick={() => userplayhandler(message.content)}/>
+                </div>:""}
             </div>
           );
         })}

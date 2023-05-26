@@ -84,6 +84,17 @@ const jp: LocaleType = {
         de: "Deutsch",
       },
     },
+    ReadLang: {
+      Name: "ReadLanguage",
+      All: "所有语言",
+      Options: {
+        cn: "简体中文",
+        en: "English",
+        es: "Español",
+        jp: "日本語",
+        de: "Deutsch",
+      },
+    },
     Avatar: "アバター",
     FontSize: {
       Title: "フォントサイズ",

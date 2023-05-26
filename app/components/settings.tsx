@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, HTMLProps, useRef,useContext } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import styles from "./settings.module.scss";
 
@@ -20,9 +20,9 @@ import {
   useAppConfig,
 } from "../store";
 
-import Locale, { AllLangs, changeLang, getLang } from "../locales";
+import Locale, { AllLangs,AllReadLangs, changeLang, getLang,getReadLang,changeReadLang,ReadLang } from "../locales";
 import { copyToClipboard } from "../utils";
-import Link from "next/link";
+//import Link from "next/link";
 import { Path, UPDATE_URL } from "../constant";
 import { Prompt, SearchService, usePromptStore } from "../store/prompt";
 import { ErrorBoundary } from "./error";
@@ -49,6 +49,7 @@ function UserPromptModal(props: { onClose?: () => void }) {
   const [searchPrompts, setSearchPrompts] = useState<Prompt[]>([]);
   const prompts = searchInput.length > 0 ? searchPrompts : allPrompts;
 
+
   useEffect(() => {
     if (searchInput.length > 0) {
       const searchResult = SearchService.search(searchInput);
@@ -57,6 +58,8 @@ function UserPromptModal(props: { onClose?: () => void }) {
       setSearchPrompts([]);
     }
   }, [searchInput]);
+
+
 
   return (
     <div className="modal-mask">
@@ -259,6 +262,19 @@ export function Settings() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [selectedLang, setSelectedLang] = useState(getReadLang());
+
+  useEffect(() => {
+    setSelectedLang(getReadLang());
+  }, []);
+
+  const handleChange = (e:string) => {
+
+    const value = e as ReadLang;
+    setSelectedLang(value);
+    changeReadLang(value);
+  };
+
   return (
     <ErrorBoundary>
       <div className="window-header">
@@ -454,6 +470,20 @@ export function Settings() {
                 )
               }
             ></input>
+          </ListItem>
+          <ListItem title={Locale.Settings.ReadLang.Name}>
+            <select
+              value={selectedLang}
+              onChange={(e) => {
+                handleChange(e.target.value as any);
+              }}
+            >
+              {AllReadLangs.map((lang) => (
+                <option value={lang} key={lang}>
+                  {Locale.Settings.ReadLang.Options[lang]}
+                </option>
+              ))}
+            </select>
           </ListItem>
         </List>
 
