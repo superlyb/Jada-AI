@@ -104,8 +104,8 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-sub-title"]}>
           现在订阅可享受免费试用3天
         </div>
-        <div className={styles["sidebar-sub-title"]}>
-          多语种朗读功能上线
+        <div className={styles["sidebar-sub-title2"]} >
+          现已支持语音输入,请使用Chrome或者Microsoft Edge获得更好的效果
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
