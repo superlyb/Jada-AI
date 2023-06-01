@@ -1,5 +1,5 @@
 import { useDebouncedCallback } from "use-debounce";
-import { memo, useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 
 import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
@@ -21,6 +21,8 @@ import AutoIcon from "../icons/auto.svg";
 import BottomIcon from "../icons/bottom.svg";
 import StopIcon from "../icons/pause.svg";
 import PlayIcon from "../icons/play.svg";
+import MicIcon from "../icons/mic.svg";
+import MuteIcon from "../icons/mute.svg";
 
 import {
   Message,
@@ -67,10 +69,10 @@ import {
 
 import {useUser } from '@/utils/useUser';
 
-//import StartButton, { startStates } from './startbutton'
 
 import txt2speech from "./txt2speech"
-
+import speech2txt from "./speech2txt"
+import StartButton from "./startbutton";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -279,6 +281,9 @@ export function ChatActions(props: {
   scrollToBottom: () => void;
   showPromptHints: () => void;
   hitBottom: boolean;
+  isReady:boolean;
+  state:string;
+  voiceInput:(data:string)=>void;
 }) {
   const config = useAppConfig();
   const navigate = useNavigate();
@@ -296,7 +301,8 @@ export function ChatActions(props: {
   // stop all responses
   const couldStop = ControllerPool.hasPending();
   const stopAll = () => ControllerPool.stopAll();
-
+  const { voiceInput } = props;
+  
   return (
     <div className={chatStyle["chat-input-actions"]}>
       {couldStop && (
@@ -352,6 +358,17 @@ export function ChatActions(props: {
       >
         <MaskIcon />
       </div>
+      <div
+        className={`${chatStyle["chat-speak-action"]} clickable`}
+        onClick={() => {
+          handleRec();
+        }}
+      >
+        <StartButton disabled={!props.isReady}
+                state={props.state}
+                onClick={props.isReady ? () => {} : undefined}
+                handleUserinput={voiceInput}/>
+      </div>
     </div>
   );
 }
@@ -365,6 +382,9 @@ function  userplayhandler(txt:string)  {
  // setOpenAudioDialog(true)
   txt2speech(txt,false)
   
+}
+function handleRec(){
+  speech2txt()
 }
 
 export function Chat() {
@@ -389,7 +409,7 @@ export function Chat() {
   const navigate = useNavigate();
 
   //for microphone
-
+  const isRecording = useRef(false)
  // microphone end
 
   const onChatBodyScroll = (e: HTMLElement) => {
@@ -547,6 +567,10 @@ export function Chat() {
     chatStore.onUserInput(content).then(() => setIsLoading(false));
     inputRef.current?.focus();
   };
+
+  const handleUpdateUserInput = (newData:string) => {
+    setUserInput(prevUserInput => prevUserInput + newData);
+  }
     
 
   const context: RenderMessage[] = session.mask.context.slice();
@@ -810,6 +834,9 @@ export function Chat() {
             inputRef.current?.focus();
             onSearch("");
           }}
+          isReady = {false}
+          state={"default"} // modify add usestate
+          voiceInput={handleUpdateUserInput}
         />
         <div className={styles["chat-input-panel-inner"]}>
           <textarea
